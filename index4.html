@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="styles4.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- login form container-->
+    <div class="login-form-container" id="login-form">
+        <form id="loginForm">
+            <h3>Login</h3>
+            <input type="email" class="box" id="email" placeholder="enter your email">
+            <input type="password" class="box" id="password" placeholder="enter your password">
+            <input type="submit" value="Login now" class="btn">
+            <input type="checkbox" id="remember">
+            <label for="remember">remember me</label>
+            <p>forget password> <a href="#">click here</a></p>
+            <p>don't have any account? <a href="index2.html">Signup now</a></p>
+        </form>
+    </div>
+    <!-- login form container ends -->
+
+    <!--  home section start-->
+    <section class="home" id="home">
+        <div class="video-container">
+            <video src="images/vid-4.mp4" id="video-slider" loop autoplay muted></video>
+        </div>
+    </section>
+    <!--home section end-->
+    <script>
+        const form = document.getElementById("loginForm");
+
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+
+        if (localStorage.getItem('isLoggedIn')) {
+            window.location.href = "http://127.0.0.1:5500/index.html"
+        } else {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (email.value === "" || password.value === "") {
+                    alert("please fill all the fields")
+                    return;
+                }
+                const prev = JSON.parse(localStorage.getItem('user'))
+                if (prev) {
+                    if (prev.email === email.value) {
+                        if (prev.password === password.value) {
+                            localStorage.setItem('isLoggedIn', "true")
+                            window.location.href = "http://127.0.0.1:5500/index.html"
+                            return;
+                        } else {
+                            alert("invalid password")
+                        }
+                    } else {
+                        alert("Invalid email")
+                        return;
+                    }
+                } else {
+                    alert("Invalid email")
+                    return;
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
