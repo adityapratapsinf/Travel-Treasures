@@ -7,7 +7,7 @@ const logOut = document.getElementById('logout-btn')
 if(localStorage.getItem('isLoggedIn')){
     signUpButton.style.display = 'none';
 }else{
-    window.location.href =  "http://127.0.0.1:5500/index4.html"
+    window.location.href =  "index4.html"
 }
 
 logOut.addEventListener("click", function (){
